@@ -1,9 +1,7 @@
 package com.bb.neo4j_login_module;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.jetty.jaas.JAASRole;
 import org.eclipse.jetty.security.UserPrincipal;
