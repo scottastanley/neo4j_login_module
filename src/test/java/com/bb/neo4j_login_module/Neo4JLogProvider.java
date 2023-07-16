@@ -1,3 +1,6 @@
+/* 
+ * Copyright 2023 Scott Alan Stanley
+ */
 package com.bb.neo4j_login_module;
 import java.util.Formatter;
 import java.util.function.Consumer;

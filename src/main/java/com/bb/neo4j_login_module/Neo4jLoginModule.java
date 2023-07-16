@@ -1,3 +1,6 @@
+/* 
+ * Copyright 2023 Scott Alan Stanley
+ */
 package com.bb.neo4j_login_module;
 
 import java.io.IOException;
@@ -31,10 +34,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * A JAAS LoginModule for authenticating users against a Neo4J graph database. This LoginModule has
+ * been developed to work with a Jetty server and matches the behavior of JDBCLoginModule provided
+ * as part of the Jetty distribution.
+ * 
  * 
  * Details for the expected behavior of a LoginModule is available 
  * here, 
- * https://docs.oracle.com/javase/10/security/java-authentication-and-authorization-service-jaas-loginmodule-developers-guide1.htm#GUID-E9C5810B-ADB6-4454-869D-B269ECA8145F__LOGINMODULE.LOGINMETHOD-21144491
+ * https://docs.oracle.com/javase/10/security/java-authentication-and-authorization-service-jaas-loginmodule-developers-guide1.htm#JSSEC-GUID-CB46C30D-FFF1-466F-B2F5-6DE0BD5DA43A
  * and here,
  * https://docs.oracle.com/javase/8/docs/technotes/guides/security/jaas/JAASRefGuide.html
  * 
@@ -68,6 +75,16 @@ public class Neo4jLoginModule
     private Boolean m_isAborted = null;
     private Boolean m_isLoggedOut = null;
 
+    
+    /**
+     * Initialize this login module.  Retrieve the configuration properties from the 
+     * options and save the subject and callback handler.
+     * 
+     * @param subject
+     * @param callbackHandler
+     * @param sharedState
+     * @param options
+     */
     @Override
     public void initialize(Subject subject, CallbackHandler callbackHandler, 
                            Map<String, ?> sharedState, Map<String, ?> options) {
@@ -85,6 +102,14 @@ public class Neo4jLoginModule
         m_neo4jUri = String.class.cast(options.get(NEO4J_URI_PROP));            
     }
 
+    
+    /**
+     * Start the authentication process for the user.  
+     * 
+     * @return true if the authentication succeeded, or false if this LoginModule should be ignored.
+     * @throws FailedLoginException if the provided credentials are not correct
+     * @throws LoginException if the authentication fails for any other reason
+     */
     @Override
     public boolean login() 
             throws LoginException {
@@ -123,6 +148,12 @@ public class Neo4jLoginModule
         return true;
     }
     
+    /**
+     * Abort the login process.  
+     * 
+     * @return true if this method succeeded, or false if this LoginModule should be ignored.
+     * @throws LoginException if the abort fails
+     */
     @Override
     public boolean abort() 
             throws LoginException {
@@ -155,6 +186,12 @@ public class Neo4jLoginModule
         }
     }
 
+    /**
+     * Commit the login process, finalizing the login for this LoginModule.
+     * 
+     * @return true if this method succeeded, or false if this LoginModule should be ignored.
+     * @throws LoginException
+     */
     @Override
     public boolean commit() 
             throws LoginException {
@@ -189,6 +226,12 @@ public class Neo4jLoginModule
         return isAuthenticated() && isCommitted();
     }
     
+    /**
+     * Log the subject out, clearing all principals associated with this login module.
+     * 
+     * @return true if this method succeeded, or false if this LoginModule should be ignored.
+     * @throws LoginException if the logout fails
+     */
     @Override
     public boolean logout() 
             throws LoginException {
@@ -373,7 +416,7 @@ public class Neo4jLoginModule
     }
 
     /**
-     * 
+     * A container class used to represent the username and password provided by the user.
      */
     class UsernamePassword {
         private String m_username = null;
