@@ -21,6 +21,7 @@ import javax.security.auth.spi.LoginModule;
 import org.eclipse.jetty.jaas.callback.ObjectCallback;
 import org.neo4j.driver.AuthToken;
 import org.neo4j.driver.AuthTokens;
+import org.neo4j.driver.Config;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
 import org.neo4j.driver.Query;
@@ -279,8 +280,8 @@ public class Neo4jLoginModule
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("username", username);
 
-        
-        try (Driver driver = GraphDatabase.driver(m_neo4jUri, token);
+        Config conf = Config.defaultConfig();
+        try (Driver driver = GraphDatabase.driver(m_neo4jUri, token, conf);
              Session sess = driver.session()) {
             
             Result res = sess.run(neo4jQuery.withParameters(params));
