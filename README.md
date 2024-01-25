@@ -15,13 +15,13 @@ This module is not set up with a clean automated installation process at this po
 ### Installation
 1. Build the module using Maven; `mvn clean package`
 
-1. Copy the JAR file to the $JETTY\_BASE/lib/ folder; `cp target/neo4j_login_module-1.0.jar $JETTY_BASE/lib/`
+1. Copy the JAR file to the $JETTY_BASE/lib/ folder; `cp target/neo4j_login_module-1.0.jar $JETTY_BASE/lib/`
 
-1. Copy the module definition to $JETTY\_BASE/modules/; `cp src/main/resources/neo4j-authentication.mod $JETTY_BASE/modules/`
+1. Copy the module definition to $JETTY_BASE/modules/; `cp src/main/resources/neo4j-authentication.mod $JETTY_BASE/modules/`
 
-1. Copy the XML file to $JETTY\_BASE/etc/; `cp src/main/resources/reload-ssl-keys.xml $JETTY_BASE/etc/`
+1. Copy the XML file to $JETTY_BASE/etc/; `cp src/main/resources/reload-ssl-keys.xml $JETTY_BASE/etc/`
 
-1. Create a .ini file in the $JETTY\_BASE/start.d/ directory; for example `$JETTY\_BASE/start.d/neo4j-authentication.ini`.  The contents of this file should be;
+1. Create a .ini file in the $JETTY_BASE/start.d/ directory; for example `$JETTY_BASE/start.d/neo4j-authentication.ini`.  The contents of this file should be;
 
 ```
 # --------------------------------------- 
