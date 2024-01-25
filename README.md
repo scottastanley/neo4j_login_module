@@ -8,11 +8,11 @@ logic in the JDBC Login Module provided with jetty.
 This module is not set up with a clean automated installation process at this point.  But, manual usage is simple enough...
 
 ### Requirements
-**Jetty Version**: > 11.0.x (build and tested using 11.0.7)
+**Jetty Version**: > 11.0.x (built and tested using 11.0.7)
 
 **Java Version**: > 15.0.1
 
-**Neo4j Java Driver Version**: > 4.4.x (build and tested using 4.4.12)
+**Neo4j Java Driver Version**: > 4.4.x (built and tested using 4.4.12)
 
 ### Installation
 1. Build the module using Maven; `mvn clean package`
