@@ -12,6 +12,8 @@ This module is not set up with a clean automated installation process at this po
 
 **Java Version**: > 15.0.1
 
+**Neo4j Java Driver Version**: > 4.4.x (build and tested using 4.4.12)
+
 ### Installation
 1. Build the module using Maven; `mvn clean package`
 
