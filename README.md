@@ -23,17 +23,9 @@ This module is not set up with a clean automated installation process at this po
 
 1. Copy the XML file to $JETTY_BASE/etc/; `cp src/main/resources/reload-ssl-keys.xml $JETTY_BASE/etc/`
 
-1. Create a .ini file in the $JETTY_BASE/start.d/ directory; for example `$JETTY_BASE/start.d/neo4j-authentication.ini`.  The contents of this file should be;
-
 1. Include the Neo4j Java Driver library in the $JETTY_BASE/lib/ext directory. 
 
-```
-# --------------------------------------- 
-# Module: neo4j-authentication
-# Enables the JAAS Login service for authentication against Neo4J. 
-# --------------------------------------- 
---module=neo4j-authentication
-```
+1. Install the Neo4j authentication module in the start.d directory; `java -jar $JETTY_HOME/start.jar --add-module=neo4j-authentication`
 
 1. Configure the setting controlling the access to Neo4J in the file `$JETTY_BASE/etc/login.conf`. The configuration file format for the login.conf file matches the standard format as documented in the Jetty documentation. The LOGIN_MODULE_NAME corresponds to the name provided in the `neo4j-authentication.xml` file. 
 
