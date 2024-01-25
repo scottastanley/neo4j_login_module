@@ -25,6 +25,8 @@ This module is not set up with a clean automated installation process at this po
 
 1. Create a .ini file in the $JETTY_BASE/start.d/ directory; for example `$JETTY_BASE/start.d/neo4j-authentication.ini`.  The contents of this file should be;
 
+1. Include the Neo4j Java Driver library in the $JETTY_BASE/lib/ext directory. 
+
 ```
 # --------------------------------------- 
 # Module: neo4j-authentication
