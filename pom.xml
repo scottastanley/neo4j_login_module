@@ -16,12 +16,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
-        <build_version>1.0</build_version>
+        <build_version>1.1</build_version>
         <jetty_version>11.0.7</jetty_version>
         <junit_version>4.13.1</junit_version>
         <mockito_version>3.7.7</mockito_version>
-        <neo4j_version>4.2.6</neo4j_version>
-        <neo4j_driver_version>4.4.12</neo4j_driver_version>        
+        <neo4j_version>4.4.34</neo4j_version>
+        <neo4j_driver_version>4.4.16</neo4j_driver_version>
     </properties>
 
 
@@ -81,12 +81,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit_version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna</artifactId>
-            <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
       </dependencies>
