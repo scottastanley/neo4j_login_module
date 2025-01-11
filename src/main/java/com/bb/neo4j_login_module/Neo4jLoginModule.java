@@ -180,7 +180,7 @@ public class Neo4jLoginModule
             if (isAborted()) {
                 return true;
             } else {
-                throw new LoginException("Abort failed");
+                throw new Neo4jLoginException("Abort failed");
             }
         } else {
             return false;
@@ -220,7 +220,7 @@ public class Neo4jLoginModule
                 LOG.error("Failed to commit login", th);
                 cleanPrincipals();
                 setIsCommitted(false);
-                throw new LoginException("Commit failed due to error");
+                throw new Neo4jLoginException("Commit failed due to error", th);
             }
         }            
 
@@ -244,12 +244,12 @@ public class Neo4jLoginModule
                 setIsLoggedOut(true);
             } catch (Throwable th) {
                 setIsLoggedOut(false);
-                throw new LoginException("Failed to logout user");
+                throw new Neo4jLoginException("Failed to logout user", th);
             }
         } else {
             // Since the UserPrincipal implementation from Jetty does not
             // implement Destroyable, throw an exception
-            throw new LoginException("Unable to destroy principal for read only subject");
+            throw new Neo4jLoginException("Unable to destroy principal for read only subject");
         }
         
         return isLoggedOut();
@@ -270,7 +270,7 @@ public class Neo4jLoginModule
      * @return The Neo4jUser
      */
     Neo4jUser getUser(final String username) 
-            throws LoginException {
+            throws Neo4jLoginException {
         Neo4jUser user = null;
         
         AuthToken token = AuthTokens.basic(m_neo4jUser, m_neo4jPassword);
@@ -303,7 +303,7 @@ public class Neo4jLoginModule
                      roles.add(String.class.cast(role));   
                     }
                 } else {
-                    throw new LoginException("Unexpected role value type, " + rolesVal.type());
+                    throw new Neo4jLoginException("Unexpected role value type, " + rolesVal.type());
                 }
                 
                 user = new Neo4jUser(nodeUsername, creds, roles);
@@ -311,7 +311,7 @@ public class Neo4jLoginModule
 
         } catch (Throwable th) {
             LOG.error("Failed obtaining user", th);
-            throw new LoginException("Failed obtaining user");
+            throw new Neo4jLoginException("Failed obtaining user", th);
         }
         
         return user;
